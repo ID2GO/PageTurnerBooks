@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="eu.id2go.pets">
+    package="eu.id2go.bookstore">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".EditorActivity"
-            android:label="@string/editor_activity_title_new_pet"
+            android:label="@string/editor_activity_title_new_book"
             android:theme="@style/EditorTheme"
             android:parentActivityName=".CatalogActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->

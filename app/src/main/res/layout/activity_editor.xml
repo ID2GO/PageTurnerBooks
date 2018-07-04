@@ -41,30 +41,41 @@
 
             <!-- Name field -->
             <EditText
-                android:id="@+id/edit_pet_name"
-                android:hint="@string/hint_pet_name"
+                android:id="@+id/edit_book_author"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_book_author"
+                android:inputType="textCapWords" />
+            <!-- Title field -->
+            <EditText
+                android:id="@+id/edit_book_title"
+                android:hint="@string/hint_book_title"
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
-
+            <!-- Title field -->
+            <EditText
+                android:id="@+id/edit_book_description"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_book_description"
+                android:inputType="textCapWords" />
             <!-- Breed field -->
             <EditText
-                android:id="@+id/edit_pet_breed"
-                android:hint="@string/hint_pet_breed"
+                android:id="@+id/edit_book_genre"
+                android:hint="@string/hint_book_genre"
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Gender category -->
+    <!-- Genre category -->
     <LinearLayout
-        android:id="@+id/container_gender"
+        android:id="@+id/container_genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_gender"
+            android:text="@string/category_genre"
             style="@style/CategoryStyle" />
 
         <!-- Input field -->
@@ -74,9 +85,9 @@
             android:layout_weight="2"
             android:orientation="vertical">
 
-            <!-- Gender drop-down spinner -->
+            <!-- Genre drop-down spinner -->
             <Spinner
-                android:id="@+id/spinner_gender"
+                android:id="@+id/spinner_genre"
                 android:layout_height="48dp"
                 android:layout_width="wrap_content"
                 android:paddingRight="16dp"
@@ -103,17 +114,17 @@
             android:layout_weight="2"
             android:paddingLeft="4dp">
 
-            <!-- Weight field -->
+            <!-- Pages field -->
             <EditText
-                android:id="@+id/edit_pet_weight"
-                android:hint="@string/hint_pet_weight"
+                android:id="@+id/edit_book_pages"
+                android:hint="@string/hint_book_number_of_pages"
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />
 
-            <!-- Units for weight (kg) -->
+            <!-- Units for pages (kg) -->
             <TextView
-                android:id="@+id/label_weight_units"
-                android:text="@string/unit_pet_weight"
+                android:id="@+id/label_pages_units"
+                android:text="@string/unit_book_pages"
                 style="@style/EditorUnitsStyle"/>
         </RelativeLayout>
     </LinearLayout>
