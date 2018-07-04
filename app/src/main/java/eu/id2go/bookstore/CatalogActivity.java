@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package eu.id2go.bookstore;
 
 import android.content.ContentValues;
@@ -32,7 +31,7 @@ import eu.id2go.bookstore.data.BookstoreContract.BookTitleEntry;
 import eu.id2go.bookstore.data.BookstoreDbHelper;
 
 /**
- * Displays list of bookstore that were entered and stored in the app.
+ * Displays list of books that were entered and stored in the app.
  */
 public class CatalogActivity extends AppCompatActivity {
 
@@ -90,6 +89,9 @@ public class CatalogActivity extends AppCompatActivity {
                 BookTitleEntry.COLUMN_AUTHOR,
                 BookTitleEntry.COLUMN_TITLE,
                 BookTitleEntry.COLUMN_DESCRIPTION,
+                BookTitleEntry.COLUMN_PRICE,
+                BookTitleEntry.COLUMN_PUBLISHER,
+                BookTitleEntry.COLUMN_PHONE_NUMBER,
                 BookTitleEntry.COLUMN_GENRE,
                 BookTitleEntry.COLUMN_PAGES};
 
@@ -115,6 +117,9 @@ public class CatalogActivity extends AppCompatActivity {
                     BookTitleEntry.COLUMN_AUTHOR + " - " +
                     BookTitleEntry.COLUMN_TITLE + " - " +
                     BookTitleEntry.COLUMN_DESCRIPTION + " - " +
+                    BookTitleEntry.COLUMN_PRICE + " - " +
+                    BookTitleEntry.COLUMN_PUBLISHER + " - " +
+                    BookTitleEntry.COLUMN_PHONE_NUMBER + " - " +
                     BookTitleEntry.COLUMN_GENRE + " - " +
                     BookTitleEntry.COLUMN_PAGES + "\n");
 
@@ -123,7 +128,10 @@ public class CatalogActivity extends AppCompatActivity {
             int authorColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_AUTHOR);
             int titleColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_TITLE);
             int descriptionColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_DESCRIPTION);
-            int GenreColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_GENRE);
+            int priceColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_PRICE);
+            int publisherNameColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_PUBLISHER);
+            int phoneNumberColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_PHONE_NUMBER);
+            int genreColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_GENRE);
             int pagesColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_PAGES);
 
             // Loop through the returned table rows in the cursor
@@ -133,13 +141,19 @@ public class CatalogActivity extends AppCompatActivity {
                 String currentAuthor = cursor.getString(authorColumnIndex);
                 String currentTitle = cursor.getString(titleColumnIndex);
                 String currentDescription = cursor.getString(descriptionColumnIndex);
-                int currentGenre = cursor.getInt(GenreColumnIndex);
+                int currentPrice = cursor.getInt(priceColumnIndex);
+                String currentPublisherName = cursor.getString(publisherNameColumnIndex);
+                int currentPhoneNumber = cursor.getInt(phoneNumberColumnIndex);
+                int currentGenre = cursor.getInt(genreColumnIndex);
                 int currentPages = cursor.getInt(pagesColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
                         currentAuthor + " - " +
                         currentTitle + " - " +
                         currentDescription + " - " +
+                        currentPrice + " - " +
+                        currentPublisherName + " - " +
+                        currentPhoneNumber + " - " +
                         currentGenre + " - " +
                         currentPages));
 
@@ -159,22 +173,28 @@ public class CatalogActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // Create a ContentValues object where column names are the keys,
-        // and Toto's book attributes are the values.
+        // and Tolkien's book attributes are the values.
+        // Possible column names are: shop_id_number,ISBN (International Standard Book Number), EAN
+        // (European Article Number (bar code)), author, title, description, genre, language, number
+        // of pages, year of publication, picture, price, quantity, publisher name, and publisher phone number.
         ContentValues values = new ContentValues();
-        values.put(BookTitleEntry.COLUMN_AUTHOR, "Tolkien, J R R");
+        values.put(BookTitleEntry.COLUMN_AUTHOR, "Tolkien, John Ronald Reuel");
         values.put(BookTitleEntry.COLUMN_TITLE, "The Hobbit");
         values.put(BookTitleEntry.COLUMN_DESCRIPTION, "Smaug certainly looked fast asleep, when Bilbo peeped once more from the entrance. He was just about to step out on to the floor when he caught a sudden thin ray of red from under the drooping lid of Smaug's left eye. He was only pretending to be asleep! He was watching the tunnel entrance... Whisked away from his comfortable, unambitious life in his hobbit-hole in Bag End by Gandalf the wizard and a company of dwarves, Bilbo");
-        values.put(BookTitleEntry.COLUMN_GENRE, BookTitleEntry.GENRE_SCIENCE_FICTION);
+        values.put(BookTitleEntry.COLUMN_GENRE, BookTitleEntry.GENRE_FICTION);
+        values.put(BookTitleEntry.COLUMN_PRICE, 40);
+        values.put(BookTitleEntry.COLUMN_PUBLISHER, "HarperCollins");
+        values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, 2087417070);
         values.put(BookTitleEntry.COLUMN_PAGES, 310);
         db.insert(BookTitleEntry.TABLE_NAME, null, values);
 
-        // Insert a new row for Toto in the database, returning the ID of that new row.
+        // Insert a new row for The Hobbit in the database, returning the ID of that new row.
         // The first argument for db.insert() is the bookstore table name.
         // The second argument provides the name of a column in which the framework
         // can insert NULL in the event that the ContentValues is empty (if
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
-        // The third argument is the ContentValues object containing the info for Toto.
+        // The third argument is the ContentValues object containing the info for The Hobbit.
         long newRowId = db.insert(BookTitleEntry.TABLE_NAME, null, values);
     }
 

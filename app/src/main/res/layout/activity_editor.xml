@@ -51,18 +51,37 @@
                 android:hint="@string/hint_book_title"
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
-            <!-- Title field -->
+            <!-- Description field -->
             <EditText
                 android:id="@+id/edit_book_description"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/hint_book_description"
                 android:inputType="textCapWords" />
-            <!-- Breed field -->
+            <!-- Price field -->
             <EditText
-                android:id="@+id/edit_book_genre"
-                android:hint="@string/hint_book_genre"
-                android:inputType="textCapWords"
+                android:id="@+id/edit_book_price"
+                android:hint="@string/hint_book_price"
+                android:inputType="number"
                 style="@style/EditorFieldStyle" />
+            <!-- Number in stock field -->
+            <EditText
+                android:id="@+id/edit_book_number_in_stock"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_books_in_stock"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edit_book_publisher"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_book_publisher"
+                android:inputType="textCapWords" />
+
+            <EditText
+                android:id="@+id/edit_book_publisher_phone"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/edit_book_publisher_phone"
+                android:inputType="textCapWords" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -104,7 +123,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/category_measurement"
+            android:text="@string/category_specs"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -121,7 +140,7 @@
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />
 
-            <!-- Units for pages (kg) -->
+            <!-- Units for total pages -->
             <TextView
                 android:id="@+id/label_pages_units"
                 android:text="@string/unit_book_pages"

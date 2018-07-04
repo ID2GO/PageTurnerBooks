@@ -34,8 +34,6 @@ import android.widget.Toast;
 import eu.id2go.bookstore.data.BookstoreContract.BookTitleEntry;
 import eu.id2go.bookstore.data.BookstoreDbHelper;
 
-//import eu.id2go.bookstore.data.BookstoreContract;
-
 /**
  * Allows user to create a new book or edit an existing one.
  */
@@ -55,7 +53,15 @@ public class EditorActivity extends AppCompatActivity {
      * EditText field to enter the book's description
      */
     private EditText mDescriptionEditText;
-
+    /**
+     * EditText field to enter the book's description
+     */
+    private EditText mPriceEditText;
+    /**
+     * //Publisher Name Publisher Phone Number
+     */
+    private EditText mPublisherNameEditText;
+    private EditText mPublisherPhoneNumberEditText;
     /**
      * EditText field to enter the book's pages
      */
@@ -68,9 +74,9 @@ public class EditorActivity extends AppCompatActivity {
 
     /**
      * Genre of the book. The possible values are:
-     * 0 for unknown genre, 1 for male, 2 for female.
+     * 0 for unknown genre, 1 for male, 2 for female,
      */
-    private int mGenre = 0;
+    private int mGenre = BookTitleEntry.GENRE_UNKNOWN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +87,9 @@ public class EditorActivity extends AppCompatActivity {
         mAuthorEditText = findViewById(R.id.edit_book_author);
         mTitleEditText = findViewById(R.id.edit_book_title);
         mDescriptionEditText = findViewById(R.id.edit_book_description);
+        mPriceEditText = findViewById(R.id.edit_book_price);
+        mPublisherNameEditText = findViewById(R.id.edit_book_publisher);
+        mPublisherPhoneNumberEditText = findViewById(R.id.edit_book_publisher_phone);
         mPagesEditText = findViewById(R.id.edit_book_pages);
         mGenreSpinner = findViewById(R.id.spinner_genre);
 
@@ -111,6 +120,8 @@ public class EditorActivity extends AppCompatActivity {
                     // Here make reference to OuterClassContract.InnerClassEntry.CONSTANT (BlankContract.BlankEntry.CONSTANT)
                     // Due to importstatement OuterClassContract.InnerClassEntry the outerclass BookstoreContract. can be omitted
                     if (selection.equals(getString(R.string.genre_science_fiction))) {
+                        mGenre = BookTitleEntry.GENRE_UNKNOWN; // Unknown
+                    } else if (selection.equals(getString(R.string.genre_unknown))) {
                         mGenre = BookTitleEntry.GENRE_SCIENCE_FICTION; // Science Fiction
                     } else if (selection.equals(getString(R.string.genre_fiction))) {
                         mGenre = BookTitleEntry.GENRE_FICTION; // Fiction
@@ -133,7 +144,7 @@ public class EditorActivity extends AppCompatActivity {
             // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mGenre = 0; // Unknown
+                mGenre = BookTitleEntry.GENRE_UNKNOWN; // Unknown
             }
         });
     }
@@ -148,15 +159,21 @@ public class EditorActivity extends AppCompatActivity {
      */
     private void insertBook() {
         // Read input from EditText fields
-        // To avoid poluted output from string @.trim() to eliminate leading or trailing white space
+        // To avoid polluted output from string @.trim() to eliminate leading or trailing white space
         String authorString = mAuthorEditText.getText().toString().trim();
         String titleString = mTitleEditText.getText().toString().trim();
         String descriptionString = mDescriptionEditText.getText().toString().trim();
+        String priceString = mPriceEditText.getText().toString().trim();
+        int price = Integer.parseInt(priceString);
+        String publisherNameString = mPublisherNameEditText.getText().toString().trim();
+        String publisherPhoneNumberString = mPublisherPhoneNumberEditText.getText().toString().trim();
+        long phoneNumber = Integer.parseInt(publisherPhoneNumberString);
         String pagesString = mPagesEditText.getText().toString().trim();
         int pages = Integer.parseInt(pagesString);
 
         // Creating connection to database using database helper
         BookstoreDbHelper mDbHelper = new BookstoreDbHelper(this);
+
         // Get the database in writing mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -165,6 +182,9 @@ public class EditorActivity extends AppCompatActivity {
         values.put(BookTitleEntry.COLUMN_AUTHOR, authorString);
         values.put(BookTitleEntry.COLUMN_TITLE, titleString);
         values.put(BookTitleEntry.COLUMN_DESCRIPTION, descriptionString);
+        values.put(BookTitleEntry.COLUMN_PRICE, price);
+        values.put(BookTitleEntry.COLUMN_PUBLISHER, publisherNameString);
+        values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, phoneNumber);
         values.put(BookTitleEntry.COLUMN_GENRE, mGenre);
         values.put(BookTitleEntry.COLUMN_PAGES, pages);
 

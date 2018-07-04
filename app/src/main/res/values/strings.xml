@@ -12,7 +12,7 @@
 -->
 <resources>
     <!-- Name for the application [CHAR LIMIT=12] -->
-    <string name="app_name">Page-Turner</string>
+    <string name="app_name">Page-Turner Books</string>
 
     <!-- Label for overflow menu option that inserts fake book data into the app [CHAR LIMIT=20] -->
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
@@ -36,7 +36,7 @@
     <string name="category_genre">Genre</string>
 
     <!-- Label for measurement information in the editor [CHAR LIMIT=30] -->
-    <string name="category_measurement">Measurement</string>
+    <string name="category_specs">Specifications</string>
 
     <!-- Text hint for author field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_author">Author</string>
@@ -47,16 +47,24 @@
     <!-- Text hint for description field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_description">Description</string>
 
-    <!-- Text hint for breed field in the editor [CHAR LIMIT=30] -->
-    <string name="hint_book_genre">Genre</string>
+    <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_price">Price</string>
+
+    <!-- Text hint for number of books in stock [CHAR LIMIT=5]-->
+    <string name="hint_books_in_stock">in stock</string>
+
+    <string name="hint_book_publisher">Name of Publisher</string>
+
+    <string name="edit_book_publisher_phone">Phone number of Publisher</string>
 
     <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_number_of_pages">Number of pages</string>
 
-    <!-- Units for pages of the book (kilograms) [CHAR LIMIT=5] -->
+    <!-- Units for the object (kilograms/kilometers, number of pages, etc) [CHAR LIMIT=5] -->
     <string name="unit_book_pages">pages</string>
 
     <!-- Labels for dropdown menu option if the book's genre is unknown [CHAR LIMIT=20] -->
+    <string name="genre_unknown">Unknown</string>
     <string name="genre_science_fiction">Science Fiction</string>
     <string name="genre_fiction">Fiction</string>
     <string name="genre_drama">Drama</string>
