@@ -52,8 +52,9 @@ public class BookstoreDbHelper extends SQLiteOpenHelper {
                 + BookTitleEntry.COLUMN_TITLE + " TEXT, "
                 + BookTitleEntry.COLUMN_DESCRIPTION + " Text, "
                 + BookTitleEntry.COLUMN_PRICE + " INTEGER NOT NULL DEFAULT 0,"
+                + BookTitleEntry.COLUMN_STOCK_QUANTITY + " INTEGER NOT NULL DEFAULT + 0,"
                 + BookTitleEntry.COLUMN_PUBLISHER + " TEXT, "
-                + BookTitleEntry.COLUMN_PHONE_NUMBER + " INTEGER, "
+                + BookTitleEntry.COLUMN_PHONE_NUMBER + " TEXT, "
                 + BookTitleEntry.COLUMN_GENRE + " INTEGER NOT NULL, "
                 + BookTitleEntry.COLUMN_PAGES + " INTEGER NOT NULL DEFAULT 0);";
 
@@ -63,20 +64,9 @@ public class BookstoreDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // The database is still @ version 1, so command below is not needed yet
-        String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + BookTitleEntry.TABLE_NAME;
-
-        db.execSQL(SQL_DELETE_ENTRIES);
-        onCreate(db);
+        // The database is still @ version 1, so implementation of this command follows later
 
     }
 
-//    /**
-//     * This method should be called into action when downgrading the database version
-//     */
-//    @Override
-//    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//                onUpgrade(db, oldVersion, newVersion);
-//    }
 
 }

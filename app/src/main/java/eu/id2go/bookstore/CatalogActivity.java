@@ -59,9 +59,6 @@ public class CatalogActivity extends AppCompatActivity {
         // and pass the context, which is the current activity.
         mDbHelper = new BookstoreDbHelper(this);
 
-//        displayDatabaseInfo();
-//        BookstoreDbHelper mDbHelper = new BookstoreDbHelper(this);
-//        SQLiteDatabase db = mDbHelper.getReadableDatabase();
     }
 
     /**
@@ -90,6 +87,7 @@ public class CatalogActivity extends AppCompatActivity {
                 BookTitleEntry.COLUMN_TITLE,
                 BookTitleEntry.COLUMN_DESCRIPTION,
                 BookTitleEntry.COLUMN_PRICE,
+                BookTitleEntry.COLUMN_STOCK_QUANTITY,
                 BookTitleEntry.COLUMN_PUBLISHER,
                 BookTitleEntry.COLUMN_PHONE_NUMBER,
                 BookTitleEntry.COLUMN_GENRE,
@@ -118,6 +116,7 @@ public class CatalogActivity extends AppCompatActivity {
                     BookTitleEntry.COLUMN_TITLE + " - " +
                     BookTitleEntry.COLUMN_DESCRIPTION + " - " +
                     BookTitleEntry.COLUMN_PRICE + " - " +
+                    BookTitleEntry.COLUMN_STOCK_QUANTITY + " - " +
                     BookTitleEntry.COLUMN_PUBLISHER + " - " +
                     BookTitleEntry.COLUMN_PHONE_NUMBER + " - " +
                     BookTitleEntry.COLUMN_GENRE + " - " +
@@ -129,6 +128,7 @@ public class CatalogActivity extends AppCompatActivity {
             int titleColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_TITLE);
             int descriptionColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_DESCRIPTION);
             int priceColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_PRICE);
+            int stockQuantityColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_STOCK_QUANTITY);
             int publisherNameColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_PUBLISHER);
             int phoneNumberColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_PHONE_NUMBER);
             int genreColumnIndex = cursor.getColumnIndex(BookTitleEntry.COLUMN_GENRE);
@@ -142,8 +142,9 @@ public class CatalogActivity extends AppCompatActivity {
                 String currentTitle = cursor.getString(titleColumnIndex);
                 String currentDescription = cursor.getString(descriptionColumnIndex);
                 int currentPrice = cursor.getInt(priceColumnIndex);
+                int currentStockQuantity = cursor.getInt(stockQuantityColumnIndex);
                 String currentPublisherName = cursor.getString(publisherNameColumnIndex);
-                int currentPhoneNumber = cursor.getInt(phoneNumberColumnIndex);
+                String currentPhoneNumber = cursor.getString(phoneNumberColumnIndex);
                 int currentGenre = cursor.getInt(genreColumnIndex);
                 int currentPages = cursor.getInt(pagesColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
@@ -152,6 +153,7 @@ public class CatalogActivity extends AppCompatActivity {
                         currentTitle + " - " +
                         currentDescription + " - " +
                         currentPrice + " - " +
+                        currentStockQuantity + " - " +
                         currentPublisherName + " - " +
                         currentPhoneNumber + " - " +
                         currentGenre + " - " +
@@ -184,6 +186,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(BookTitleEntry.COLUMN_DESCRIPTION, "Smaug certainly looked fast asleep, when Bilbo peeped once more from the entrance. He was just about to step out on to the floor when he caught a sudden thin ray of red from under the drooping lid of Smaug's left eye. He was only pretending to be asleep! He was watching the tunnel entrance... Whisked away from his comfortable, unambitious life in his hobbit-hole in Bag End by Gandalf the wizard and a company of dwarves, Bilbo");
         values.put(BookTitleEntry.COLUMN_GENRE, BookTitleEntry.GENRE_FICTION);
         values.put(BookTitleEntry.COLUMN_PRICE, 40);
+        values.put(BookTitleEntry.COLUMN_STOCK_QUANTITY, 2);
         values.put(BookTitleEntry.COLUMN_PUBLISHER, "HarperCollins");
         values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, 2087417070);
         values.put(BookTitleEntry.COLUMN_PAGES, 310);

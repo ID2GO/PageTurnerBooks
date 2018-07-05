@@ -12,15 +12,16 @@ public final class BookstoreContract {
 
     public static abstract class BookTitleEntry implements BaseColumns {
 
-//        private BookstoreContract() {}
 
         public static final String TABLE_NAME = "bookstore";
 
+        // The order here is: COLUMN CONSTANTS & "column titles" as shown in the app above the database output
         public static final String _ID = BaseColumns._ID;
-        public static final String COLUMN_AUTHOR = "author";
-        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_AUTHOR = "Author";
+        public static final String COLUMN_TITLE = "Title";
         public static final String COLUMN_DESCRIPTION = "Description";
         public static final String COLUMN_PRICE = "Price";
+        public static final String COLUMN_STOCK_QUANTITY = "Quantity";
         public static final String COLUMN_PUBLISHER = "Publisher";
         public static final String COLUMN_PHONE_NUMBER = "PhoneNumber";
         public static final String COLUMN_GENRE = "genre";

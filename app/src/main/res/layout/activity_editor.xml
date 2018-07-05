@@ -65,9 +65,9 @@
                 style="@style/EditorFieldStyle" />
             <!-- Number in stock field -->
             <EditText
-                android:id="@+id/edit_book_number_in_stock"
+                android:id="@+id/edit_book_quantity_in_stock"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/hint_books_in_stock"
+                android:hint="@string/hint_books_quantity_in_stock"
                 android:inputType="number" />
 
             <EditText
@@ -80,7 +80,7 @@
                 android:id="@+id/edit_book_publisher_phone"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/edit_book_publisher_phone"
-                android:inputType="textCapWords" />
+                android:inputType="phone" />
 
         </LinearLayout>
     </LinearLayout>

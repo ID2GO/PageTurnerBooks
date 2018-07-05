@@ -58,6 +58,10 @@ public class EditorActivity extends AppCompatActivity {
      */
     private EditText mPriceEditText;
     /**
+     * EditText field to enter the quantity in stock
+     */
+    private EditText mStockQuantity;
+    /**
      * //Publisher Name Publisher Phone Number
      */
     private EditText mPublisherNameEditText;
@@ -88,6 +92,7 @@ public class EditorActivity extends AppCompatActivity {
         mTitleEditText = findViewById(R.id.edit_book_title);
         mDescriptionEditText = findViewById(R.id.edit_book_description);
         mPriceEditText = findViewById(R.id.edit_book_price);
+        mStockQuantity = findViewById(R.id.edit_book_quantity_in_stock);
         mPublisherNameEditText = findViewById(R.id.edit_book_publisher);
         mPublisherPhoneNumberEditText = findViewById(R.id.edit_book_publisher_phone);
         mPagesEditText = findViewById(R.id.edit_book_pages);
@@ -118,7 +123,7 @@ public class EditorActivity extends AppCompatActivity {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
                     // Here make reference to OuterClassContract.InnerClassEntry.CONSTANT (BlankContract.BlankEntry.CONSTANT)
-                    // Due to importstatement OuterClassContract.InnerClassEntry the outerclass BookstoreContract. can be omitted
+                    // Due to import statement OuterClassContract.InnerClassEntry the outer class BookstoreContract. can be omitted
                     if (selection.equals(getString(R.string.genre_science_fiction))) {
                         mGenre = BookTitleEntry.GENRE_UNKNOWN; // Unknown
                     } else if (selection.equals(getString(R.string.genre_unknown))) {
@@ -165,9 +170,10 @@ public class EditorActivity extends AppCompatActivity {
         String descriptionString = mDescriptionEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
         int price = Integer.parseInt(priceString);
+        String stockQuantityString = mStockQuantity.getText().toString().trim();
+        int stockQuantity = Integer.parseInt(stockQuantityString);
         String publisherNameString = mPublisherNameEditText.getText().toString().trim();
         String publisherPhoneNumberString = mPublisherPhoneNumberEditText.getText().toString().trim();
-        long phoneNumber = Integer.parseInt(publisherPhoneNumberString);
         String pagesString = mPagesEditText.getText().toString().trim();
         int pages = Integer.parseInt(pagesString);
 
@@ -183,8 +189,9 @@ public class EditorActivity extends AppCompatActivity {
         values.put(BookTitleEntry.COLUMN_TITLE, titleString);
         values.put(BookTitleEntry.COLUMN_DESCRIPTION, descriptionString);
         values.put(BookTitleEntry.COLUMN_PRICE, price);
+        values.put(BookTitleEntry.COLUMN_STOCK_QUANTITY, stockQuantity);
         values.put(BookTitleEntry.COLUMN_PUBLISHER, publisherNameString);
-        values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, phoneNumber);
+        values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, publisherPhoneNumberString);
         values.put(BookTitleEntry.COLUMN_GENRE, mGenre);
         values.put(BookTitleEntry.COLUMN_PAGES, pages);
 
@@ -194,10 +201,10 @@ public class EditorActivity extends AppCompatActivity {
         // Show a toast message of either success saving or error saving
         if (newRowId == -1) {
             // If the row ID is -1, then saving resulted in an error
-            Toast.makeText(this, "Error while saving book info", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, this.getString(R.string.toast_error_saving), Toast.LENGTH_SHORT).show();
         } else {
             // Otherwise saving was successful and a toast displays showing a row ID
-            Toast.makeText(this, "Book info saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, this.getString(R.string.toast_success_saving) + newRowId, Toast.LENGTH_SHORT).show();
         }
     }
 

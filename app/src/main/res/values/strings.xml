@@ -20,6 +20,9 @@
     <!-- Label for overflow menu option that deletes all book data in the app [CHAR LIMIT=20] -->
     <string name="action_delete_all_entries">Delete All Books</string>
 
+    <string name="toast_error_saving">Error while saving book info</string>
+    <string name="toast_success_saving">Book info saved with row id: </string>
+
     <!-- Title for the activity to add a new book [CHAR LIMIT=20] -->
     <string name="editor_activity_title_new_book">Add a Book</string>
 
@@ -51,7 +54,7 @@
     <string name="hint_book_price">Price</string>
 
     <!-- Text hint for number of books in stock [CHAR LIMIT=5]-->
-    <string name="hint_books_in_stock">in stock</string>
+    <string name="hint_books_quantity_in_stock">Quantity in stock</string>
 
     <string name="hint_book_publisher">Name of Publisher</string>
 
