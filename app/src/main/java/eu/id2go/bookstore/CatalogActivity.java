@@ -168,7 +168,7 @@ public class CatalogActivity extends AppCompatActivity {
     /**
      * Helper method to insert hardcoded book data into the database. For debugging purposes only.
      */
-    private void insertbook() {
+    private void insertBook() {
         // Gets the database in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -186,7 +186,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(BookTitleEntry.COLUMN_PUBLISHER, "HarperCollins");
         values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, 2087417070);
         values.put(BookTitleEntry.COLUMN_PAGES, 310);
-        db.insert(BookTitleEntry.TABLE_NAME, null, values);
+//        db.insert(BookTitleEntry.TABLE_NAME, null, values); // This line caused a repetition of the Dummy Data in the database
 
         // Insert a new row for The Hobbit in the database, returning the ID of that new row.
         // The first argument for db.insert() is the bookstore table name.
@@ -212,7 +212,7 @@ public class CatalogActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                insertbook();
+                insertBook();
                 displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
