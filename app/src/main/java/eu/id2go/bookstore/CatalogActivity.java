@@ -157,6 +157,7 @@ public class CatalogActivity extends AppCompatActivity {
                         currentGenre + " - " +
                         currentPages));
 
+
             }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
@@ -186,7 +187,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(BookTitleEntry.COLUMN_PUBLISHER, "HarperCollins");
         values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, 2087417070);
         values.put(BookTitleEntry.COLUMN_PAGES, 310);
-//        db.insert(BookTitleEntry.TABLE_NAME, null, values); // This line caused a repetition of the Dummy Data in the database
+        db.insert(BookTitleEntry.TABLE_NAME, null, values); // This line caused a repetition of the Dummy Data in the database
 
         // Insert a new row for The Hobbit in the database, returning the ID of that new row.
         // The first argument for db.insert() is the bookstore table name.
