@@ -109,7 +109,10 @@ public class CatalogActivity extends AppCompatActivity {
         try {
             // Display the number of rows in the Cursor (which reflects the number of rows in the
             // bookstore table in the database).
-            displayView.setText("The bookstore table contains: " + cursor.getCount() + " books.\n\n");
+//            displayView.setText("The bookstore table contains: " + cursor.getCount() + " books.\n\n");
+
+            displayView.setText(String.format(getResources().getString(R.string.contents_of_database_table) + cursor.getCount() + " books \n\n"));
+
 
             displayView.append(BookTitleEntry._ID + " - " +
                     BookTitleEntry.COLUMN_AUTHOR + " - " +
@@ -190,7 +193,6 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(BookTitleEntry.COLUMN_PUBLISHER, "HarperCollins");
         values.put(BookTitleEntry.COLUMN_PHONE_NUMBER, 2087417070);
         values.put(BookTitleEntry.COLUMN_PAGES, 310);
-//        db.insert(BookTitleEntry.TABLE_NAME, null, values); // This line caused a repetition of the Dummy Data in the database
 
         // Insert a new row for The Hobbit in the database, returning the ID of that new row.
         // The first argument for db.insert() is the bookstore table name.
@@ -199,7 +201,7 @@ public class CatalogActivity extends AppCompatActivity {
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for The Hobbit.
-        long newRowId = db.insert(BookTitleEntry.TABLE_NAME, null, values);
+
     }
 
     @Override
