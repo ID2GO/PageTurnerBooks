@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import eu.id2go.bookstore.data.BookstoreContract.BookTitleEntry;
 import eu.id2go.bookstore.data.BookstoreDbHelper;
@@ -105,12 +106,9 @@ public class CatalogActivity extends AppCompatActivity {
 
         TextView displayView = findViewById(R.id.text_view_book);
 
-
         try {
             // Display the number of rows in the Cursor (which reflects the number of rows in the
             // bookstore table in the database).
-//            displayView.setText("The bookstore table contains: " + cursor.getCount() + " books.\n\n");
-
             displayView.setText(String.format(getResources().getString(R.string.contents_of_database_table) + cursor.getCount() + " books \n\n"));
 
 
@@ -161,9 +159,8 @@ public class CatalogActivity extends AppCompatActivity {
                         currentPhoneNumber + " - " +
                         currentGenre + " - " +
                         currentPages));
-
-
             }
+
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.
@@ -201,7 +198,15 @@ public class CatalogActivity extends AppCompatActivity {
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for The Hobbit.
-
+        long newRowId = db.insert(BookTitleEntry.TABLE_NAME, null, values);
+        // Show a toast message of either success saving or error saving
+        if (newRowId == -1) {
+            // If the row ID is -1, then saving resulted in an error
+            Toast.makeText(this, this.getString(R.string.toast_error_inserting_dummy_data), Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise saving was successful and a toast displays showing a row ID
+            Toast.makeText(this, this.getString(R.string.toast_success_inserting_dummy_data) + newRowId, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

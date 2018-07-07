@@ -21,6 +21,9 @@
     <!-- Label for overflow menu option that deletes all book data in the app [CHAR LIMIT=20] -->
     <string name="action_delete_all_entries">Delete All Books</string>
 
+    <string name="toast_error_inserting_dummy_data">Error while inserting dummy data book info</string>
+    <string name="toast_success_inserting_dummy_data">Dummy book info inserted with row id: </string>
+
     <string name="toast_error_saving">Error while saving book info</string>
     <string name="toast_success_saving">Book info saved with row id: </string>
 
